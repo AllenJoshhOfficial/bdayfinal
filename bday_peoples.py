@@ -3,7 +3,7 @@ import random
 import pandas as pd
 import time
 import sys
-# File:
+
 excel_file_path = r"D:\Projects'23\Bday Final\test1.xlsx"
 df = pd.read_excel(excel_file_path)
 
@@ -13,8 +13,8 @@ def get_birthday_info(df):
     date = df['DOB']
     year = df['YEAR']
     numbers = df['NUMBER']
-    age = []  # calculating age
-    bday_numbers = []  # to store birthday people numbers
+    age = []  
+    bday_numbers = []  
     bday_wishes = []
 
     thisyear = today.strftime("%Y")
@@ -24,7 +24,7 @@ def get_birthday_info(df):
         ageyear = int(thisyear) - k
         age.append(ageyear)
 
-    for i, j in enumerate(date):  # fetching who's bday
+    for i, j in enumerate(date):  
         if dob_input == j:
             store = i
             print(f"Today's Birthday is for {name[store]}")
