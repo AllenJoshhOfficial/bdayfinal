@@ -7,7 +7,7 @@ from tkinter import messagebox, simpledialog
 import pywhatkit
 import webbrowser
 
-# File:
+
 excel_file_path = r"D:\Projects'23\Bday Final\test1.xlsx"
 df = pd.read_excel(excel_file_path)
 
@@ -16,8 +16,8 @@ class BirthdayReminderGUI:
         self.root = root
         self.root.title("Birthday Reminder")
 
-        # Define the country code here
-        self.country_code = '+'  # Add your country code here
+       
+        self.country_code = '+'  
 
         self.label = tk.Label(root, text="BIRTHDAY Reminder", font=("Helvetica", 16))
         self.label.pack()
@@ -29,12 +29,11 @@ class BirthdayReminderGUI:
         self.button_show_birthdays.pack()
 
     def show_birthdays(self):
-        # Ask if the user has logged into WhatsApp Web
+       
         is_logged_in = self.confirm_logged_in()
         if is_logged_in:
-            self.root.withdraw()  # Hide the main window
-
-            # Create a new window to display birthday names and buttons
+            self.root.withdraw() 
+            
             self.birthday_window = tk.Toplevel()
             self.birthday_window.title("Birthday People")
 
@@ -43,30 +42,30 @@ class BirthdayReminderGUI:
                 tk.Label(self.birthday_window, text=f"{name} has a birthday today!").pack()
                 tk.Button(self.birthday_window, text="Send Wishes", command=lambda n=name: self.send_whatsapp_wishes(n)).pack()
 
-            # Add the "WISH ALL" button after showing birthdays
+           
             self.button_wish_all = tk.Button(self.birthday_window, text="WISH ALL", command=self.wish_all)
             self.button_wish_all.pack()
 
     def send_whatsapp_wishes(self, name):
         bday_wishes = get_birthday_info(df)[1]
 
-        # Retrieve the phone number directly from the DataFrame
+       
         number = df.loc[df['NAME'] == name, 'NUMBER'].iloc[0]
         message = bday_wishes[name]
 
-        # Close the birthday window after clicking the button
+       
         self.birthday_window.destroy()
 
-        # Move the rest of the logic to another method
+       
         self.schedule_whatsapp_message(number, message)
 
     def wish_all(self):
-        self.birthday_window.destroy()  # Close the birthday window after clicking the button
+        self.birthday_window.destroy()  
 
         bday_numbers, bday_wishes = get_birthday_info(df)
 
         total_messages = len(bday_wishes)
-        approximate_time = total_messages * 35  # Assuming 3 seconds per message
+        approximate_time = total_messages * 35  
 
         response = messagebox.askyesno("Wish All Confirmation", f"You are about to send wishes to {total_messages} people. Approximate time to finish: {approximate_time} seconds. Do you want to proceed?")
         if response:
