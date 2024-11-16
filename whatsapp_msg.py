@@ -3,7 +3,7 @@ import pyautogui
 import time
  
 def whatsapp_bot(bday_numbers, bday_wishes):
-    country_code = '+'  # Add your country code here
+    country_code = '+'  
     hour = int(input("Enter Hour to send [24hr Format][Don't use 0 before hour]: "))
     minute = int(input("Enter Minute to send[Don't use 0 before minute]: "))
     if minute==60:
